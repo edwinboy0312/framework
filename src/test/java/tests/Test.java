@@ -11,10 +11,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.*;
-
+import utilities.*;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Test {
@@ -22,10 +24,15 @@ public class Test {
     WebDriver driver;
     ExtentReports report;
     ExtentTest test;
+    Map<String, String> testdata = new HashMap<String,String>();
     static int number =1;
+    
+    
     @BeforeSuite
     void initReport(){
         report = new ExtentReports("./reports/ExecutionReport.html", true, DisplayOrder.OLDEST_FIRST);
+        testdata = ExcelUtility.loadData();
+        
     }
 
     @BeforeTest
@@ -34,10 +41,12 @@ public class Test {
         driver = new ChromeDriver();
         test = report.startTest("test case " + number++);
     }
+   
     @org.testng.annotations.Test
-    public void test1() {
-        driver.get("https://www.google.com/");
-        test.log(LogStatus.PASS, "Launch app", "Successfully lauched google");
+    public void test1() throws InterruptedException {
+        driver.get(testdata.get("Url"));
+        Thread.sleep(3000);
+        test.log(LogStatus.PASS, "Launch app", testdata.get("Url"));
     }
 
    
