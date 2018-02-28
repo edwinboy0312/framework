@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 public class ApiUtilities {   
 
 
-  public String postEntity(String url,String sXML,HashMap<String,String> mapSetReqProp) throws Exception {
+  public static String postEntity(String url,String sXML,HashMap<String,String> mapSetReqProp) throws Exception {
 
     try {       
       URL obj = new URL(url);
@@ -61,7 +61,7 @@ public class ApiUtilities {
     }
   }
 
-  public String putEntity(String url,String sXML,HashMap<String,String> mapSetReqProp) throws Exception {
+  public static String putEntity(String url,String sXML,HashMap<String,String> mapSetReqProp) throws Exception {
 
     try {       
       URL obj = new URL(url);
@@ -111,7 +111,7 @@ public class ApiUtilities {
   }
   
 
-  public String getEntity(String url,HashMap<String,String> mapSetReqProp) {
+  public static String getEntity(String url,HashMap<String,String> mapSetReqProp) {
 
     try {   
 
